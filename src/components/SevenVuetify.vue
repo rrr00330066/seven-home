@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="5">
+    <v-col cols="12" sm="5">
       <v-select
         v-model="selectedCategory"
         :items="categories"
@@ -8,7 +8,7 @@
         @change="filterItems"
       ></v-select>
     </v-col>
-    <v-col cols="7">
+    <v-col cols="12" sm="7">
       <v-text-field
         v-model="searchPrice"
         label="価格で検索 （±100円）"
@@ -16,18 +16,21 @@
       ></v-text-field>
     </v-col>
   </v-row>
-
-  <v-data-table
-    v-model:items-per-page="itemsPerPage"
-    :headers="headers"
-    :items="filteredDesserts"
-    item-value="商品名"
-    class="elevation-1"
-  >
-    <template v-slot:cell-URL="{ item }">
-      <a :href="item.URL" target="_blank">{{ item.URL }}</a>
-    </template>
-  </v-data-table>
+  <v-row>
+    <v-col cols="12">
+      <v-data-table
+        v-model:items-per-page="itemsPerPage"
+        :headers="headers"
+        :items="filteredDesserts"
+        item-value="商品名"
+        class="elevation-1"
+      >
+        <template v-slot:cell-URL="{ item }">
+          <a :href="item.URL" target="_blank">{{ item.URL }}</a>
+        </template>
+      </v-data-table>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -36,7 +39,7 @@ export default {
     return {
       selectedCategory: null,
       searchPrice: null,
-      itemsPerPage: 5,
+      itemsPerPage: 15,
       headers: [
         {
           title: "商品名",
